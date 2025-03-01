@@ -85,7 +85,7 @@ jobs:
       shell: bash
 
     - name: Archive code cv.pdf
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: zipped_cv
         path: ${{ env.TEX_FOLDER }}/cv/cv.pdf
