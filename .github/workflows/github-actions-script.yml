@@ -1,6 +1,6 @@
 name: Download Data and Render pdf file
 on:
-  repository_dispatch:
+  workflow_dispatch:
     types: render-cv
 
   push:
