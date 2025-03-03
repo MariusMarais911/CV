@@ -1,5 +1,9 @@
 name: Download Data and Render pdf file
 on:
+  push:
+    paths:
+      - '**.tex'
+      
   workflow_dispatch:
     types: render-cv
 
