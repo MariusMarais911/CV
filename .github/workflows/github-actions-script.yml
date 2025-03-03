@@ -1,15 +1,7 @@
 name: Download Data and Render pdf file
-on:
-  push:
-    paths:
-      - '**.tex'
-      
+on:   
   workflow_dispatch:
     types: render-cv
-
-  push:
-    branches:
-      - master
 
 env:
   USE_CACHE: true
