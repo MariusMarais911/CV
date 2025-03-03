@@ -1,7 +1,6 @@
 name: Download Data and Render pdf file
 on:   
   workflow_dispatch:
-    types: render-cv
 
 env:
   USE_CACHE: true
