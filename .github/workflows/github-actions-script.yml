@@ -1,6 +1,8 @@
 name: Download Data and Render pdf file
 on:   
-  workflow_dispatch:
+  push:
+    paths:
+      - '**.tex'
 
 env:
   USE_CACHE: true
