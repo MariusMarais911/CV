@@ -83,3 +83,6 @@ jobs:
         path: ${{ env.TEX_FOLDER }}/cv/cv.pdf
         retention-days: 30
 
+    - name: Download all workflow run artifacts
+      uses: actions/download-artifact@v4
+
