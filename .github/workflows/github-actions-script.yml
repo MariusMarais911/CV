@@ -68,13 +68,13 @@ jobs:
 
     - name: Pull Image
       run: |
-        docker pull thomasweise/texlive
+        docker pull thomasweise/docker-texlive-thin
       shell: bash
 
     - name: Complie XeLaTex Document
       run: |
         cd $TEX_FOLDER
-        docker run --rm --user $(id -u):$(id -g) -i -w "/doc" -v "$PWD":/doc thomasweise/texlive make
+        docker run --rm --user $(id -u):$(id -g) -i -w "/doc" -v "$PWD":/doc thomasweise/docker-texlive-thin make
       shell: bash
 
     - name: Archive code cv.pdf
