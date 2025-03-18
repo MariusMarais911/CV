@@ -1,5 +1,6 @@
 name: Download Data and Render pdf file
-on:   
+on: 
+  workflow_dispatch
   push:
     paths:
       - '**.tex'
