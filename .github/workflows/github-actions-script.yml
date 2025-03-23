@@ -2,9 +2,9 @@ name: Compile Latex File
 permissions: write-all
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - '**.tex'
+ # push:
+ #   paths:
+ #     - '**.tex'
       
 env:
   outputtex: output.tex
