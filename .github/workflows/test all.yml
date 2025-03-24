@@ -1,0 +1,36 @@
+name: Compile LaTeX Files
+
+on:
+  push:
+    paths:
+      - 'input/**/*.tex'
+  pull_request:
+    paths:
+      - 'input/**/*.tex'
+  workflow_dispatch:
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install LaTeX
+        run: sudo apt-get update && sudo apt-get install -y texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-xetex
+
+      - name: Create Output Directory
+        run: mkdir -p output
+
+      - name: Compile LaTeX Files
+        run: |
+          for file in input/*.tex; do
+            pdflatex -interaction=nonstopmode -output-directory=output "$file"
+          done
+
+      - name: Upload PDFs
+        uses: actions/upload-artifact@v4
+        with:
+          name: compiled-pdfs
+          path: output/*.pdf
