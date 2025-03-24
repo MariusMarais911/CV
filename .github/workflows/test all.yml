@@ -29,6 +29,12 @@ jobs:
             pdflatex -interaction=nonstopmode -output-directory=output "$file"
           done
 
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Stefanzweif
+          file_pattern: '.'
+
+
       - name: Upload PDFs
         uses: actions/upload-artifact@v4
         with:
