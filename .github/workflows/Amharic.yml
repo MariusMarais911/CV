@@ -20,6 +20,9 @@ jobs:
       - name: Install TeX Live
         run: sudo apt-get update && sudo apt-get install -y texlive-xetex texlive-lang-other latexmk
 
+      - name: Install Ethiopic Fonts
+        run: sudo apt-get install -y fonts-sil-abyssinica fonts-noto
+
       - name: Compile LaTeX document
         run: |
           latexmk -xelatex -interaction=nonstopmode -output-directory=output output.tex
