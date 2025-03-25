@@ -1,0 +1,31 @@
+name: Build LaTeX PDF
+
+on:
+  push:
+    paths:
+      - 'output.tex'
+  pull_request:
+    paths:
+      - 'output.tex'
+  workflow_dispatch:
+
+jobs:
+  build_pdf:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install TeX Live
+        run: sudo apt-get update && sudo apt-get install -y texlive-xetex latexmk texlive-lang-ethiopic
+
+      - name: Compile LaTeX document
+        run: |
+          latexmk -xelatex -interaction=nonstopmode -output-directory=output output.tex
+
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: output-pdf
+          path: output/output.pdf
