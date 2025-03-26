@@ -4,9 +4,11 @@ on:
   push:
     paths:
       - 'input/**/start.txt'
+
   pull_request:
     paths:
       - 'input/**/start.txt'
+
   workflow_dispatch:
 
 jobs:
@@ -16,6 +18,13 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+
+      - name: Check if start.txt is newly added
+        run: |
+          if ! git log -1 --diff-filter=A --name-only | grep -q 'input/.*/start.txt'; then
+            echo "start.txt was not newly added. Skipping workflow."
+            exit 1
+          fi
 
       - name: Install LaTeX
         run: sudo apt-get update && sudo apt-get install -y texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-xetex
