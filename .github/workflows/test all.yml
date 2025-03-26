@@ -17,23 +17,19 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Install LaTeX
-        run: sudo apt-get update && sudo apt-get install -y texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-xetex
-
       - name: Create Output Directory
         run: mkdir -p output
 
-      - name: Compile LaTeX Files
-        run: |
-          for file in input/*.tex; do
-            pdflatex -interaction=nonstopmode -output-directory=output "$file"
-          done
+      - name: Compile LaTeX Files using thomasweise/latex-thin
+        uses: docker://thomasweise/latex-thin
+        with:
+          args: >
+            sh -c "for file in input/*.tex; do pdflatex -interaction=nonstopmode -output-directory=output \"$file\"; done"
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: Stefanzweif
+          commit_message: Compiled LaTeX files
           file_pattern: '.'
-
 
       - name: Upload PDFs
         uses: actions/upload-artifact@v4
