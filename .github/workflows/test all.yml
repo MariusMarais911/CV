@@ -4,14 +4,10 @@ on:
   push:
     paths:
       - 'input/**/start.txt'
-    types:
-      - added
 
   pull_request:
     paths:
       - 'input/**/start.txt'
-    types:
-      - added
 
   workflow_dispatch:
 
