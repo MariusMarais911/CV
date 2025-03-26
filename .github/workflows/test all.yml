@@ -4,9 +4,15 @@ on:
   push:
     paths:
       - 'input/**/start.txt'
+    branches:
+      - main
+    types:
+      - added
   pull_request:
     paths:
       - 'input/**/start.txt'
+    types:
+      - added
   workflow_dispatch:
 
 jobs:
